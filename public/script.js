@@ -82,7 +82,13 @@ socket.on('createmessage',message=>{
     const list=document.createElement('li');
     list.innerHTML=`user : ${message}`;
     document.getElementById('messages').append(list);
+    scrollBar();
 })
+
+function scrollBar() {
+    var content = document.getElementById('chat_window');
+    content.scrollTop = content.scrollHeight;
+ }
 
 const muteUnmute=()=>{
     const enabled=myvideostream.getAudioTracks()[0].enabled;

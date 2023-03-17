@@ -1,5 +1,6 @@
 const express=require("express");
 const app=express();
+const path=require("path");
 const server=require('http').Server(app);
 const io=require('socket.io')(server);
 const {v4: uuidv4} = require('uuid');
@@ -13,6 +14,9 @@ app.use(express.static('public'));
 
 app.use('/peerjs',peerServer);
 //here any user will come then it redirects to any url byuuod4 function
+app.get('/user',(req,res)=>{
+    res.sendFile(path.join(__dirname + "/front.html"));
+})
 app.get('/',(req,res)=>{
     res.redirect(`/${uuidv4()}`);
 })
@@ -21,7 +25,8 @@ app.get('/',(req,res)=>{
 // and the we can access as we are accessing it like normal url with params
 
 app.get('/new-url',(req,res)=>{
-    res.send("hey");
+    //console.log(path.join(__dirname + "/leave.html"));
+    res.sendFile(path.join(__dirname + "/leave.html"));
 })
 
 app.get('/:room',(req,res)=>{
